@@ -1,0 +1,3 @@
+Where am at. 
+
+- writing a script to combine schemas into a single prisma file to run prisma commands

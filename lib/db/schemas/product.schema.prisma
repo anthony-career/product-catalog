@@ -1,0 +1,16 @@
+enum ProductStatus  {
+  SHIPPED
+  ORDERED 
+  IDLE
+}
+
+model Product {
+  id Int @id @default(autoincrement())
+  name String
+  price Int
+  status ProductStatus @default(IDLE)
+  shipping Shipping? @relation(fields: [shipping_id], references: [id])
+  shipping_id Int?
+  image String?
+  images String[]
+}
