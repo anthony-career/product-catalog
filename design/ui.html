@@ -10,11 +10,33 @@
         theme: {
           extend: {
             colors: {
-              primary: "#3B82F6",
-              secondary: "#1E40AF",
-              success: "#22C55E",
-              danger: "#EF4444",
-              warning: "#F59E0B",
+              primary: "#000000",
+              secondary: "#333333",
+              accent: "#666666",
+              light: "#F8F8F8",
+              dark: "#1A1A1A",
+              subtle: "#F0F0F0",
+              highlight: "#E5E5E5",
+              headerDark: "#1A1A1A",
+              headerDarkHover: "#2A2A2A",
+              footerDark: "#1A1A1A",
+              footerLight: "#222222",
+            },
+            boxShadow: {
+              subtle: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+              soft: "0 2px 4px 0 rgba(0, 0, 0, 0.05)",
+              hover: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+            },
+            backgroundImage: {
+              "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+              "subtle-pattern":
+                "linear-gradient(135deg, #f8f8f8 0%, #f0f0f0 100%)",
+              "header-pattern":
+                "linear-gradient(to bottom, #1A1A1A 0%, #222222 100%)",
+              "footer-pattern":
+                "linear-gradient(to top, #1A1A1A 0%, #222222 100%)",
+              "main-pattern":
+                "linear-gradient(120deg, #f8f8f8 0%, #f5f5f5 100%)",
             },
           },
         },
@@ -39,16 +61,77 @@
         background-size: 1000px 100%;
         animation: shimmer 2s infinite linear;
       }
+      .header-gradient {
+        background: linear-gradient(to bottom, #1a1a1a 0%, #222222 100%);
+        position: relative;
+      }
+      .header-gradient::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+      }
+      .footer-gradient {
+        background: linear-gradient(to top, #1a1a1a 0%, #222222 100%);
+        position: relative;
+      }
+      .footer-gradient::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+      }
+      .main-content {
+        background: linear-gradient(120deg, #f8f8f8 0%, #f5f5f5 100%);
+        position: relative;
+      }
+      .main-content::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: radial-gradient(
+            circle at 100% 0%,
+            rgba(0, 0, 0, 0.02) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 0% 100%,
+            rgba(0, 0, 0, 0.02) 0%,
+            transparent 50%
+          );
+        pointer-events: none;
+      }
     </style>
   </head>
-  <body class="bg-gray-50 h-screen flex flex-col overflow-hidden">
+  <body class="min-h-screen flex flex-col overflow-x-hidden">
     <!-- Header -->
-    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <div class="flex items-center">
+    <header
+      class="header-gradient border-b border-gray-800 sticky top-0 z-50 w-full"
+    >
+      <div class="w-full px-4 sm:px-6 lg:px-8 py-4">
+        <div class="flex items-center justify-between">
           <a href="/" class="flex items-center space-x-2">
             <svg
-              class="w-8 h-8 text-primary"
+              class="w-8 h-8 text-white"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -56,26 +139,39 @@
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                stroke-width="2"
+                stroke-width="1.5"
                 d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
               />
             </svg>
-            <span class="text-xl font-bold text-gray-900">ShopNow</span>
+            <span class="text-xl font-bold text-white tracking-tight"
+              >ShopNow</span
+            >
           </a>
+          <nav class="hidden md:flex space-x-6">
+            <a href="#" class="text-gray-300 hover:text-white transition-colors"
+              >New Arrivals</a
+            >
+            <a href="#" class="text-gray-300 hover:text-white transition-colors"
+              >Collections</a
+            >
+            <a href="#" class="text-gray-300 hover:text-white transition-colors"
+              >About</a
+            >
+          </nav>
         </div>
       </div>
     </header>
 
     <!-- Main Container -->
-    <div class="flex-1 overflow-y-auto">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <main class="flex-1 bg-main-pattern w-full">
+      <div class="w-full px-4 sm:px-6 lg:px-8 py-8">
         <!-- Product Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <!-- Product Gallery -->
           <div class="space-y-4">
             <!-- Main Image -->
             <div
-              class="relative aspect-square bg-white rounded-lg overflow-hidden"
+              class="relative aspect-square bg-white overflow-hidden shadow-soft"
             >
               <img
                 src="https://placehold.co/600x600"
@@ -84,7 +180,7 @@
               />
               <!-- Zoom Indicator -->
               <div
-                class="absolute bottom-4 right-4 bg-white/80 px-3 py-1 rounded-full text-sm"
+                class="absolute bottom-4 right-4 bg-white/95 px-3 py-1 text-xs tracking-wide uppercase shadow-subtle"
               >
                 Click to zoom
               </div>
@@ -92,7 +188,7 @@
             <!-- Thumbnail Strip -->
             <div class="flex space-x-2 overflow-x-auto pb-2">
               <div
-                class="w-20 h-20 rounded-lg overflow-hidden cursor-pointer border-2 border-primary"
+                class="flex-shrink-0 w-20 h-20 overflow-hidden cursor-pointer border-2 border-primary shadow-subtle"
               >
                 <img
                   src="https://placehold.co/200x200"
@@ -100,14 +196,18 @@
                   class="w-full h-full object-cover"
                 />
               </div>
-              <div class="w-20 h-20 rounded-lg overflow-hidden cursor-pointer">
+              <div
+                class="w-20 h-20 overflow-hidden cursor-pointer border border-gray-200 hover:border-primary transition-colors shadow-subtle"
+              >
                 <img
                   src="https://placehold.co/200x200"
                   alt="Thumbnail"
                   class="w-full h-full object-cover"
                 />
               </div>
-              <div class="w-20 h-20 rounded-lg overflow-hidden cursor-pointer">
+              <div
+                class="w-20 h-20 overflow-hidden cursor-pointer border border-gray-200 hover:border-primary transition-colors shadow-subtle"
+              >
                 <img
                   src="https://placehold.co/200x200"
                   alt="Thumbnail"
@@ -118,49 +218,52 @@
           </div>
 
           <!-- Product Information -->
-          <div class="space-y-6">
+          <div class="space-y-8 bg-white p-6 shadow-soft">
             <!-- Product Title -->
-            <h1 class="text-3xl font-bold text-gray-900">
+            <h1 class="text-3xl font-bold text-primary tracking-tight">
               Premium Cotton T-Shirt
             </h1>
 
             <!-- Price -->
             <div class="flex items-baseline space-x-2">
-              <span class="text-3xl font-bold text-gray-900">$29.99</span>
-              <span class="text-lg text-gray-500 line-through">$39.99</span>
-              <span class="text-sm text-success">Save 25%</span>
+              <span class="text-3xl font-bold text-primary">$29.99</span>
+              <span class="text-lg text-accent line-through">$39.99</span>
+              <span class="text-sm text-accent uppercase tracking-wide"
+                >Save 25%</span
+              >
             </div>
 
             <!-- Stock Status -->
             <div class="flex items-center space-x-2">
-              <div class="w-3 h-3 rounded-full bg-success"></div>
-              <span class="text-sm font-medium text-gray-700">In Stock</span>
-              <span class="text-sm text-gray-500">(Only 5 left)</span>
+              <div class="w-2 h-2 rounded-full bg-primary"></div>
+              <span class="text-sm font-medium text-primary">In Stock</span>
+              <span class="text-sm text-accent">(Only 5 left)</span>
             </div>
 
             <!-- Size Selector -->
             <div class="space-y-2">
-              <label class="block text-sm font-medium text-gray-700"
+              <label
+                class="block text-sm font-medium text-primary uppercase tracking-wide"
                 >Size</label
               >
               <div class="flex space-x-2">
                 <button
-                  class="px-4 py-2 border rounded-md hover:border-primary"
+                  class="px-4 py-2 border border-gray-200 hover:border-primary transition-colors shadow-subtle hover:shadow-soft"
                 >
                   S
                 </button>
                 <button
-                  class="px-4 py-2 border rounded-md hover:border-primary"
+                  class="px-4 py-2 border border-gray-200 hover:border-primary transition-colors shadow-subtle hover:shadow-soft"
                 >
                   M
                 </button>
                 <button
-                  class="px-4 py-2 border rounded-md hover:border-primary"
+                  class="px-4 py-2 border border-gray-200 hover:border-primary transition-colors shadow-subtle hover:shadow-soft"
                 >
                   L
                 </button>
                 <button
-                  class="px-4 py-2 border rounded-md hover:border-primary"
+                  class="px-4 py-2 border border-gray-200 hover:border-primary transition-colors shadow-subtle hover:shadow-soft"
                 >
                   XL
                 </button>
@@ -169,47 +272,55 @@
 
             <!-- Color Selector -->
             <div class="space-y-2">
-              <label class="block text-sm font-medium text-gray-700"
+              <label
+                class="block text-sm font-medium text-primary uppercase tracking-wide"
                 >Color</label
               >
               <div class="flex space-x-2">
                 <button
-                  class="w-8 h-8 rounded-full bg-black border-2 border-primary"
+                  class="w-8 h-8 bg-black border-2 border-primary shadow-subtle"
                 ></button>
-                <button class="w-8 h-8 rounded-full bg-blue-600"></button>
-                <button class="w-8 h-8 rounded-full bg-red-600"></button>
-                <button class="w-8 h-8 rounded-full bg-green-600"></button>
+                <button
+                  class="w-8 h-8 bg-gray-600 border border-gray-200 shadow-subtle hover:border-primary transition-colors"
+                ></button>
+                <button
+                  class="w-8 h-8 bg-gray-400 border border-gray-200 shadow-subtle hover:border-primary transition-colors"
+                ></button>
+                <button
+                  class="w-8 h-8 bg-gray-200 border border-gray-200 shadow-subtle hover:border-primary transition-colors"
+                ></button>
               </div>
             </div>
 
             <!-- Quantity Selector -->
             <div class="flex items-center space-x-4">
-              <label class="text-sm font-medium text-gray-700">Quantity</label>
-              <div class="flex items-center border rounded-md">
-                <button class="px-3 py-1 text-gray-600 hover:bg-gray-100">
-                  -
-                </button>
+              <label
+                class="text-sm font-medium text-primary uppercase tracking-wide"
+                >Quantity</label
+              >
+              <div
+                class="flex items-center border border-gray-200 shadow-subtle"
+              >
+                <button class="px-3 py-1 text-accent hover:bg-subtle">-</button>
                 <input
                   type="number"
                   value="1"
-                  class="w-12 text-center border-x"
+                  class="w-12 text-center border-x border-gray-200"
                   min="1"
                 />
-                <button class="px-3 py-1 text-gray-600 hover:bg-gray-100">
-                  +
-                </button>
+                <button class="px-3 py-1 text-accent hover:bg-subtle">+</button>
               </div>
             </div>
 
             <!-- Action Buttons -->
             <div class="flex space-x-4">
               <button
-                class="flex-1 bg-primary text-white px-6 py-3 rounded-md hover:bg-secondary transition-colors"
+                class="flex-1 bg-primary text-white px-6 py-3 hover:bg-secondary transition-colors shadow-soft hover:shadow-hover"
               >
                 Add to Cart
               </button>
               <button
-                class="flex-1 border border-primary text-primary px-6 py-3 rounded-md hover:bg-primary hover:text-white transition-colors"
+                class="flex-1 border border-primary text-primary px-6 py-3 hover:bg-primary hover:text-white transition-colors shadow-subtle hover:shadow-soft"
               >
                 Buy Now
               </button>
@@ -218,7 +329,7 @@
             <!-- Additional Actions -->
             <div class="flex space-x-4 text-sm">
               <button
-                class="flex items-center space-x-1 text-gray-600 hover:text-primary"
+                class="flex items-center space-x-1 text-accent hover:text-primary"
               >
                 <svg
                   class="w-5 h-5"
@@ -229,14 +340,14 @@
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    stroke-width="2"
+                    stroke-width="1.5"
                     d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
                   />
                 </svg>
                 <span>Save for Later</span>
               </button>
               <button
-                class="flex items-center space-x-1 text-gray-600 hover:text-primary"
+                class="flex items-center space-x-1 text-accent hover:text-primary"
               >
                 <svg
                   class="w-5 h-5"
@@ -247,7 +358,7 @@
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    stroke-width="2"
+                    stroke-width="1.5"
                     d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
                   />
                 </svg>
@@ -258,27 +369,35 @@
         </div>
 
         <!-- Product Details Tabs -->
-        <div class="mt-12">
-          <div class="border-b border-gray-200">
-            <nav class="flex space-x-8">
-              <button class="border-primary text-primary border-b-2 py-4 px-1">
+        <div class="mt-12 bg-white shadow-soft">
+          <div class="border-b border-gray-100">
+            <nav class="flex flex-wrap gap-4">
+              <button
+                class="border-primary text-primary border-b-2 py-4 px-1 uppercase tracking-wide text-sm"
+              >
                 Description
               </button>
-              <button class="text-gray-500 hover:text-gray-700 py-4 px-1">
+              <button
+                class="text-accent hover:text-primary py-4 px-1 uppercase tracking-wide text-sm"
+              >
                 Specifications
               </button>
-              <button class="text-gray-500 hover:text-gray-700 py-4 px-1">
+              <button
+                class="text-accent hover:text-primary py-4 px-1 uppercase tracking-wide text-sm"
+              >
                 Reviews (128)
               </button>
-              <button class="text-gray-500 hover:text-gray-700 py-4 px-1">
+              <button
+                class="text-accent hover:text-primary py-4 px-1 uppercase tracking-wide text-sm"
+              >
                 Shipping
               </button>
             </nav>
           </div>
 
           <!-- Description Content -->
-          <div class="py-6">
-            <p class="text-gray-600">
+          <div class="py-6 px-4">
+            <p class="text-accent">
               Premium quality cotton t-shirt with a comfortable fit. Perfect for
               everyday wear, this t-shirt features a classic design and superior
               craftsmanship.
@@ -288,13 +407,13 @@
 
         <!-- Related Products -->
         <div class="mt-12">
-          <h2 class="text-2xl font-bold text-gray-900 mb-6">
+          <h2 class="text-2xl font-bold text-primary mb-6 tracking-tight">
             Related Products
           </h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <!-- Related Product Card -->
             <div
-              class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+              class="bg-white overflow-hidden shadow-soft hover:shadow-hover transition-shadow"
             >
               <img
                 src="https://placehold.co/400x400"
@@ -302,11 +421,11 @@
                 class="w-full h-48 object-cover"
               />
               <div class="p-4">
-                <h3 class="font-medium text-gray-900">Basic White Tee</h3>
+                <h3 class="font-medium text-primary">Basic White Tee</h3>
                 <p class="text-primary font-bold">$24.99</p>
                 <div class="flex items-center mt-2">
-                  <div class="w-2 h-2 rounded-full bg-success"></div>
-                  <span class="text-sm text-gray-500 ml-2">In Stock</span>
+                  <div class="w-2 h-2 rounded-full bg-primary"></div>
+                  <span class="text-sm text-accent ml-2">In Stock</span>
                 </div>
               </div>
             </div>
@@ -314,12 +433,75 @@
           </div>
         </div>
       </div>
-    </div>
+    </main>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-gray-200 sticky bottom-0 z-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div class="text-center text-gray-500 text-sm">
+    <footer class="footer-gradient">
+      <div class="w-full">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 p-8 bg-footerDark">
+          <div>
+            <h3 class="text-sm font-medium text-white mb-4">About Us</h3>
+            <p class="text-sm text-gray-400">
+              Premium quality products for the modern lifestyle.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-sm font-medium text-white mb-4">
+              Customer Service
+            </h3>
+            <ul class="space-y-2 text-sm text-gray-400">
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Contact Us</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Shipping Info</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Returns</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-sm font-medium text-white mb-4">Quick Links</h3>
+            <ul class="space-y-2 text-sm text-gray-400">
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >New Arrivals</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Best Sellers</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors">Sale</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-sm font-medium text-white mb-4">Newsletter</h3>
+            <div class="flex">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                class="flex-1 px-3 py-2 bg-footerLight border border-gray-700 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-gray-600"
+              />
+              <button
+                class="bg-white text-footerDark px-4 py-2 text-sm hover:bg-gray-100 transition-colors"
+              >
+                Subscribe
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="bg-footerLight text-center text-gray-400 text-sm py-6">
           © 2024 ShopNow. All rights reserved.
         </div>
       </div>
@@ -327,15 +509,13 @@
 
     <!-- Mobile Bottom Bar -->
     <div
-      class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 lg:hidden z-50"
+      class="fixed bottom-0 left-0 right-0 bg-footerDark border-t border-gray-800 p-4 lg:hidden z-50"
     >
       <div class="flex space-x-4">
-        <button class="flex-1 bg-primary text-white px-4 py-2 rounded-md">
+        <button class="flex-1 bg-white text-footerDark px-4 py-2">
           Add to Cart
         </button>
-        <button
-          class="flex-1 border border-primary text-primary px-4 py-2 rounded-md"
-        >
+        <button class="flex-1 border border-white text-white px-4 py-2">
           Buy Now
         </button>
       </div>

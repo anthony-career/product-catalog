@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 - Page Not Found</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#000000",
+              secondary: "#333333",
+              accent: "#666666",
+              light: "#F8F8F8",
+              dark: "#1A1A1A",
+              subtle: "#F0F0F0",
+              highlight: "#E5E5E5",
+              headerDark: "#1A1A1A",
+              headerDarkHover: "#2A2A2A",
+              footerDark: "#1A1A1A",
+              footerLight: "#222222",
+            },
+            boxShadow: {
+              subtle: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+              soft: "0 2px 4px 0 rgba(0, 0, 0, 0.05)",
+              hover: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+            },
+            backgroundImage: {
+              "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+              "subtle-pattern":
+                "linear-gradient(135deg, #f8f8f8 0%, #f0f0f0 100%)",
+              "header-pattern":
+                "linear-gradient(to bottom, #1A1A1A 0%, #222222 100%)",
+              "footer-pattern":
+                "linear-gradient(to top, #1A1A1A 0%, #222222 100%)",
+              "main-pattern":
+                "linear-gradient(120deg, #f8f8f8 0%, #f5f5f5 100%)",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="min-h-screen flex flex-col overflow-x-hidden">
+    <!-- Header -->
+    <header class="header-gradient border-b border-gray-800 sticky top-0 z-50">
+      <div class="w-full px-4 sm:px-6 lg:px-8 py-4">
+        <div class="flex items-center justify-between">
+          <a href="/" class="flex items-center space-x-2">
+            <svg
+              class="w-8 h-8 text-white"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+              />
+            </svg>
+            <span class="text-xl font-bold text-white tracking-tight"
+              >ShopNow</span
+            >
+          </a>
+          <nav class="hidden md:flex space-x-6">
+            <a href="#" class="text-gray-300 hover:text-white transition-colors"
+              >New Arrivals</a
+            >
+            <a href="#" class="text-gray-300 hover:text-white transition-colors"
+              >Collections</a
+            >
+            <a href="#" class="text-gray-300 hover:text-white transition-colors"
+              >About</a
+            >
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 bg-main-pattern flex items-center justify-center">
+      <div class="w-full max-w-2xl px-4 sm:px-6 lg:px-8 py-16 text-center">
+        <!-- 404 Illustration -->
+        <div class="mb-8">
+          <svg
+            class="w-24 h-24 mx-auto text-primary"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+        </div>
+
+        <!-- Error Message -->
+        <h1 class="text-6xl font-bold text-primary tracking-tight mb-4">404</h1>
+        <h2 class="text-2xl font-medium text-secondary mb-6">Page Not Found</h2>
+        <p class="text-accent mb-8">
+          The page you're looking for doesn't exist or has been moved.
+        </p>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/"
+            class="inline-flex items-center justify-center px-6 py-3 bg-primary text-white hover:bg-secondary transition-colors shadow-soft hover:shadow-hover"
+          >
+            <svg
+              class="w-5 h-5 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+              />
+            </svg>
+            Go Home
+          </a>
+          <button
+            onclick="history.back()"
+            class="inline-flex items-center justify-center px-6 py-3 border border-primary text-primary hover:bg-primary hover:text-white transition-colors shadow-subtle hover:shadow-soft"
+          >
+            <svg
+              class="w-5 h-5 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+              />
+            </svg>
+            Go Back
+          </button>
+        </div>
+
+        <!-- Helpful Links -->
+        <div class="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div class="bg-white p-6 shadow-soft">
+            <h3 class="text-lg font-medium text-primary mb-2">
+              Popular Categories
+            </h3>
+            <ul class="space-y-2 text-accent">
+              <li>
+                <a href="#" class="hover:text-primary transition-colors"
+                  >New Arrivals</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-primary transition-colors"
+                  >Best Sellers</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-primary transition-colors"
+                  >Sale Items</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="bg-white p-6 shadow-soft">
+            <h3 class="text-lg font-medium text-primary mb-2">
+              Customer Service
+            </h3>
+            <ul class="space-y-2 text-accent">
+              <li>
+                <a href="#" class="hover:text-primary transition-colors"
+                  >Contact Us</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-primary transition-colors"
+                  >Shipping Info</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-primary transition-colors"
+                  >Returns</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="bg-white p-6 shadow-soft">
+            <h3 class="text-lg font-medium text-primary mb-2">Account</h3>
+            <ul class="space-y-2 text-accent">
+              <li>
+                <a href="#" class="hover:text-primary transition-colors"
+                  >Sign In</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-primary transition-colors"
+                  >Create Account</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-primary transition-colors"
+                  >Order Status</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-gradient">
+      <div class="w-full">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 p-8 bg-footerDark">
+          <div>
+            <h3 class="text-sm font-medium text-white mb-4">About Us</h3>
+            <p class="text-sm text-gray-400">
+              Premium quality products for the modern lifestyle.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-sm font-medium text-white mb-4">
+              Customer Service
+            </h3>
+            <ul class="space-y-2 text-sm text-gray-400">
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Contact Us</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Shipping Info</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Returns</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-sm font-medium text-white mb-4">Quick Links</h3>
+            <ul class="space-y-2 text-sm text-gray-400">
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >New Arrivals</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Best Sellers</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors">Sale</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-sm font-medium text-white mb-4">Newsletter</h3>
+            <div class="flex">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                class="flex-1 px-3 py-2 bg-footerLight border border-gray-700 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-gray-600"
+              />
+              <button
+                class="bg-white text-footerDark px-4 py-2 text-sm hover:bg-gray-100 transition-colors"
+              >
+                Subscribe
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="bg-footerLight text-center text-gray-400 text-sm py-6">
+          © 2024 ShopNow. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
