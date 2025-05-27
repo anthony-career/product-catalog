@@ -15,9 +15,6 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html>
-      <head>
-        <title>ProcCat</title>
-      </head>
       <body className='w-screen h-screen'>
         <div className='min-h-screen flex flex-col overflow-x-hidden'>
           <Header />
