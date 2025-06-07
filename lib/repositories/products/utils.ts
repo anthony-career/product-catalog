@@ -1,15 +1,14 @@
-import { Prisma } from "@prisma/client";
 import { ProductFilters, ProductSortCategory } from "domain/product.model";
-import { dbClient } from "lib/db/client";
+import { Prisma } from "@prisma/client";
 
-const checkIsValidPriceRangeIndexValue = (indexValue: string) => {
+export const checkIsValidPriceRangeIndexValue = (indexValue: string) => {
   const validStrs = ["under", "plus"];
   const isNum = !isNaN(parseInt(indexValue));
   const isValidStr = validStrs.includes(indexValue);
   return isNum || isValidStr;
 };
 
-const checkIsValidPriceRangeString = (priceRange?: string) => {
+export const checkIsValidPriceRangeString = (priceRange?: string) => {
   if (!priceRange) return false;
   const asArr = priceRange.split("-");
   return (
@@ -19,7 +18,7 @@ const checkIsValidPriceRangeString = (priceRange?: string) => {
   );
 };
 
-const createPriceRangeExpression = (priceRange?: string) => {
+export const createPriceRangeExpression = (priceRange?: string) => {
   if (!priceRange) return null;
   const isValid = checkIsValidPriceRangeString(priceRange);
   if (!isValid) return null;
@@ -41,7 +40,7 @@ const createPriceRangeExpression = (priceRange?: string) => {
   return { gte: parseInt(first), lte: parseInt(second) };
 };
 
-const createWhereExpression = (filters?: ProductFilters) => {
+export const createWhereExpression = (filters?: ProductFilters) => {
   if (!filters) return {};
 
   const where: Prisma.ProductWhereInput = {};
@@ -64,7 +63,7 @@ const createWhereExpression = (filters?: ProductFilters) => {
   return where;
 };
 
-const createOrderByExpression = (sortCategory?: ProductSortCategory) => {
+export const createOrderByExpression = (sortCategory?: ProductSortCategory) => {
   if (!sortCategory) return {};
   const orderBy: Prisma.ProductOrderByWithRelationInput = {};
 
@@ -83,7 +82,7 @@ const createOrderByExpression = (sortCategory?: ProductSortCategory) => {
   return orderBy;
 };
 
-const createPaginationConfig = (pagination?: {
+export const createPaginationConfig = (pagination?: {
   page: number;
   limit: number;
 }): { skip?: number; take?: number } => {
@@ -92,49 +91,4 @@ const createPaginationConfig = (pagination?: {
     skip: (pagination.page - 1) * pagination.limit,
     take: pagination.limit,
   };
-};
-
-async function getAll(filters?: ProductFilters) {
-  const count = await dbClient.product.count({
-    where: createWhereExpression(filters),
-  });
-  const meta = {
-    total: count,
-    page: filters?.pagination?.page || 1,
-    limit: filters?.pagination?.limit || 10,
-  };
-  const where = createWhereExpression(filters);
-  const orderBy = createOrderByExpression(filters?.sortCategory);
-  const paginationConfig = createPaginationConfig(filters?.pagination);
-  const data = await dbClient.product.findMany({
-    where,
-    orderBy,
-    ...paginationConfig,
-  });
-  return {
-    data,
-    meta,
-  };
-}
-
-async function getOneById(id: number) {
-  const meta = {};
-  const data = await dbClient.product.findUnique({
-    where: {
-      id,
-    },
-    include: {
-      shipping: true,
-    },
-  });
-
-  return {
-    data,
-    meta,
-  };
-}
-
-export const ProductRepository = {
-  getAll,
-  getOneById,
 };
