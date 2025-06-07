@@ -60,6 +60,12 @@ export const createWhereExpression = (filters?: ProductFilters) => {
     }
   }
 
+  if (filters.category) {
+    where.category = {
+      equals: filters.category,
+    };
+  }
+
   return where;
 };
 

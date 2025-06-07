@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "generate_schema": "node ./scripts/generate-db-schema.js",
+    "init_schema": "node ./scripts/generate-db-schema.js",
     "prisma:generate": "npm run combine-schemas && prisma generate",
     "prisma:migrate": "npm run combine-schemas && prisma migrate dev",
     "seed": "node scripts/seed.db.js"
