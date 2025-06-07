@@ -1,6 +1,6 @@
 import React from "react";
 
-const Footer = () => {
+export default function Footer() {
   return (
     <footer className='footer-gradient'>
       <div className='w-full'>
@@ -67,12 +67,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className='bg-footerLight text-center text-gray-400 text-sm py-6'>
-          © 2024 ShopNow. All rights reserved.
-        </div>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

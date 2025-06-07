@@ -25,6 +25,9 @@ model Product {
   shipping_id Int?
   image String?
   images String[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  category String?
 }
 
 model Shipping {

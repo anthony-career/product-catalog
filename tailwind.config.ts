@@ -26,6 +26,7 @@ const config: Config = {
         subtle: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
         soft: "0 2px 4px 0 rgba(0, 0, 0, 0.05)",
         hover: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+        dark: "0 4px 6px -1px rgba(0, 0, 0, 0.2)",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -35,9 +36,12 @@ const config: Config = {
         "footer-pattern": "linear-gradient(to top, #1A1A1A 0%, #222222 100%)",
         "main-pattern": "linear-gradient(120deg, #f8f8f8 0%, #f5f5f5 100%)",
       },
+      lineClamp: {
+        2: "2",
+      },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/line-clamp")],
 };
 
 export default config;

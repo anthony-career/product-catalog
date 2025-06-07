@@ -1,0 +1,10 @@
+export const SET_PAGE = "SET_PAGE";
+export const SET_LIMIT = "SET_LIMIT";
+export const SET_DATA = "SET_DATA";
+export const SET_META = "SET_META";
+export const SET_CATEGORY = "SET_CATEGORY";
+export const SET_SEARCH = "SET_SEARCH";
+export const SET_SORT_CATEGORY = "SET_SORT_CATEGORY";
+export const SET_PRICE_RANGE = "SET_PRICE_RANGE";
+export const SET_LOADING = "SET_LOADING";
+export const SET_ERROR = "SET_ERROR";

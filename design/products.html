@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products - ShopNow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#000000",
+              secondary: "#333333",
+              accent: "#666666",
+              light: "#F8F8F8",
+              dark: "#1A1A1A",
+              subtle: "#F0F0F0",
+              highlight: "#E5E5E5",
+              headerDark: "#1A1A1A",
+              headerDarkHover: "#2A2A2A",
+              footerDark: "#1A1A1A",
+              footerLight: "#222222",
+            },
+            boxShadow: {
+              subtle: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+              soft: "0 2px 4px 0 rgba(0, 0, 0, 0.05)",
+              hover: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+            },
+            backgroundImage: {
+              "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+              "subtle-pattern":
+                "linear-gradient(135deg, #f8f8f8 0%, #f0f0f0 100%)",
+              "header-pattern":
+                "linear-gradient(to bottom, #1A1A1A 0%, #222222 100%)",
+              "footer-pattern":
+                "linear-gradient(to top, #1A1A1A 0%, #222222 100%)",
+              "main-pattern":
+                "linear-gradient(120deg, #f8f8f8 0%, #f5f5f5 100%)",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .header-gradient {
+        background: linear-gradient(to bottom, #1a1a1a 0%, #222222 100%);
+        position: relative;
+      }
+      .header-gradient::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+      }
+      .footer-gradient {
+        background: linear-gradient(to top, #1a1a1a 0%, #222222 100%);
+        position: relative;
+      }
+      .footer-gradient::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+      }
+      .main-content {
+        background: linear-gradient(120deg, #f8f8f8 0%, #f5f5f5 100%);
+        position: relative;
+      }
+      .main-content::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: radial-gradient(
+            circle at 100% 0%,
+            rgba(0, 0, 0, 0.02) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 0% 100%,
+            rgba(0, 0, 0, 0.02) 0%,
+            transparent 50%
+          );
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen flex flex-col overflow-x-hidden">
+    <!-- Header -->
+    <header
+      class="header-gradient border-b border-gray-800 sticky top-0 z-50 w-full"
+    >
+      <div class="w-full px-4 sm:px-6 lg:px-8 py-4">
+        <div class="flex items-center justify-between">
+          <a href="/" class="flex items-center space-x-2">
+            <svg
+              class="w-8 h-8 text-white"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+              />
+            </svg>
+            <span class="text-xl font-bold text-white tracking-tight"
+              >ShopNow</span
+            >
+          </a>
+          <nav class="hidden md:flex space-x-6">
+            <a href="#" class="text-gray-300 hover:text-white transition-colors"
+              >New Arrivals</a
+            >
+            <a href="#" class="text-gray-300 hover:text-white transition-colors"
+              >Collections</a
+            >
+            <a href="#" class="text-gray-300 hover:text-white transition-colors"
+              >About</a
+            >
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-1 bg-main-pattern w-full">
+      <div class="w-full px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Page Header -->
+        <div class="mb-8">
+          <h1 class="text-3xl font-bold text-primary tracking-tight mb-2">
+            Our Products
+          </h1>
+          <p class="text-accent">Discover our latest collection</p>
+        </div>
+
+        <!-- Search and Filters Section -->
+        <div class="mb-8">
+          <div
+            class="flex flex-col lg:flex-row gap-6 items-start lg:items-center"
+          >
+            <!-- Search Input -->
+            <div class="w-full lg:w-1/2">
+              <div class="relative">
+                <input
+                  type="text"
+                  placeholder="Search products..."
+                  class="w-full px-4 py-3 pl-12 bg-white border border-gray-200 shadow-subtle text-sm placeholder-gray-400 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
+                />
+                <div
+                  class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"
+                >
+                  <svg
+                    class="w-5 h-5 text-accent"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    />
+                  </svg>
+                </div>
+                <div class="absolute inset-y-0 right-0 pr-4 flex items-center">
+                  <button
+                    class="text-accent hover:text-primary transition-colors"
+                  >
+                    <svg
+                      class="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.5"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="mt-2 flex flex-wrap gap-2">
+                <span class="text-xs text-accent">Popular searches:</span>
+                <button
+                  class="text-xs text-accent hover:text-primary transition-colors"
+                >
+                  T-shirts
+                </button>
+                <button
+                  class="text-xs text-accent hover:text-primary transition-colors"
+                >
+                  Jeans
+                </button>
+                <button
+                  class="text-xs text-accent hover:text-primary transition-colors"
+                >
+                  Sneakers
+                </button>
+                <button
+                  class="text-xs text-accent hover:text-primary transition-colors"
+                >
+                  Accessories
+                </button>
+              </div>
+            </div>
+
+            <!-- Filters and Sort -->
+            <div class="w-full lg:w-1/2 flex flex-col items-end">
+              <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                <select
+                  class="w-full sm:w-auto px-4 py-2 bg-white border border-gray-200 shadow-subtle text-sm"
+                >
+                  <option>Category</option>
+                  <option>T-Shirts</option>
+                  <option>Hoodies</option>
+                  <option>Accessories</option>
+                </select>
+                <select
+                  class="w-full sm:w-auto px-4 py-2 bg-white border border-gray-200 shadow-subtle text-sm"
+                >
+                  <option>Price Range</option>
+                  <option>Under $25</option>
+                  <option>$25 - $50</option>
+                  <option>$50+</option>
+                </select>
+                <select
+                  class="w-full sm:w-auto px-4 py-2 bg-white border border-gray-200 shadow-subtle text-sm"
+                >
+                  <option>Sort by: Featured</option>
+                  <option>Price: Low to High</option>
+                  <option>Price: High to Low</option>
+                  <option>Newest First</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div
+          class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4"
+        >
+          <!-- Product Card -->
+          <div
+            class="bg-white overflow-hidden shadow-soft hover:shadow-hover transition-shadow"
+          >
+            <div class="relative aspect-square">
+              <img
+                src="https://placehold.co/400x400"
+                alt="Premium Cotton T-Shirt"
+                class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+              />
+              <div class="absolute top-2 right-2 sm:top-4 sm:right-4">
+                <button
+                  class="p-1.5 sm:p-2 bg-white/95 rounded-full shadow-subtle hover:bg-white transition-colors"
+                >
+                  <svg
+                    class="w-4 h-4 sm:w-5 sm:h-5 text-accent"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="p-2 sm:p-4">
+              <h3
+                class="font-medium text-primary text-sm sm:text-base mb-1 line-clamp-2"
+              >
+                Premium Cotton T-Shirt
+              </h3>
+              <div class="flex items-baseline space-x-2 mb-1 sm:mb-2">
+                <span class="text-primary font-bold text-sm sm:text-base"
+                  >$29.99</span
+                >
+                <span class="text-xs sm:text-sm text-accent line-through"
+                  >$39.99</span
+                >
+              </div>
+              <div class="flex items-center space-x-1 sm:space-x-2">
+                <div
+                  class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-primary"
+                ></div>
+                <span class="text-xs sm:text-sm text-accent">In Stock (5)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product Card -->
+          <div
+            class="bg-white overflow-hidden shadow-soft hover:shadow-hover transition-shadow"
+          >
+            <div class="relative aspect-square">
+              <img
+                src="https://placehold.co/400x400"
+                alt="Classic Denim Jacket"
+                class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+              />
+              <div class="absolute top-2 right-2 sm:top-4 sm:right-4">
+                <button
+                  class="p-1.5 sm:p-2 bg-white/95 rounded-full shadow-subtle hover:bg-white transition-colors"
+                >
+                  <svg
+                    class="w-4 h-4 sm:w-5 sm:h-5 text-accent"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="p-2 sm:p-4">
+              <h3
+                class="font-medium text-primary text-sm sm:text-base mb-1 line-clamp-2"
+              >
+                Classic Denim Jacket
+              </h3>
+              <div class="flex items-baseline space-x-2 mb-1 sm:mb-2">
+                <span class="text-primary font-bold text-sm sm:text-base"
+                  >$89.99</span
+                >
+                <span class="text-xs sm:text-sm text-accent line-through"
+                  >$99.99</span
+                >
+              </div>
+              <div class="flex items-center space-x-1 sm:space-x-2">
+                <div
+                  class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-primary"
+                ></div>
+                <span class="text-xs sm:text-sm text-accent">In Stock (3)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product Card -->
+          <div
+            class="bg-white overflow-hidden shadow-soft hover:shadow-hover transition-shadow"
+          >
+            <div class="relative aspect-square">
+              <img
+                src="https://placehold.co/400x400"
+                alt="Wool Beanie"
+                class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+              />
+              <div class="absolute top-2 right-2 sm:top-4 sm:right-4">
+                <button
+                  class="p-1.5 sm:p-2 bg-white/95 rounded-full shadow-subtle hover:bg-white transition-colors"
+                >
+                  <svg
+                    class="w-4 h-4 sm:w-5 sm:h-5 text-accent"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="p-2 sm:p-4">
+              <h3
+                class="font-medium text-primary text-sm sm:text-base mb-1 line-clamp-2"
+              >
+                Wool Beanie
+              </h3>
+              <div class="flex items-baseline space-x-2 mb-1 sm:mb-2">
+                <span class="text-primary font-bold text-sm sm:text-base"
+                  >$24.99</span
+                >
+              </div>
+              <div class="flex items-center space-x-1 sm:space-x-2">
+                <div
+                  class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-primary"
+                ></div>
+                <span class="text-xs sm:text-sm text-accent"
+                  >In Stock (10)</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Product Card -->
+          <div
+            class="bg-white overflow-hidden shadow-soft hover:shadow-hover transition-shadow"
+          >
+            <div class="relative aspect-square">
+              <img
+                src="https://placehold.co/400x400"
+                alt="Leather Wallet"
+                class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+              />
+              <div class="absolute top-2 right-2 sm:top-4 sm:right-4">
+                <button
+                  class="p-1.5 sm:p-2 bg-white/95 rounded-full shadow-subtle hover:bg-white transition-colors"
+                >
+                  <svg
+                    class="w-4 h-4 sm:w-5 sm:h-5 text-accent"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="p-2 sm:p-4">
+              <h3
+                class="font-medium text-primary text-sm sm:text-base mb-1 line-clamp-2"
+              >
+                Leather Wallet
+              </h3>
+              <div class="flex items-baseline space-x-2 mb-1 sm:mb-2">
+                <span class="text-primary font-bold text-sm sm:text-base"
+                  >$49.99</span
+                >
+                <span class="text-xs sm:text-sm text-accent line-through"
+                  >$59.99</span
+                >
+              </div>
+              <div class="flex items-center space-x-1 sm:space-x-2">
+                <div
+                  class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-primary"
+                ></div>
+                <span class="text-xs sm:text-sm text-accent">In Stock (7)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product Card -->
+          <div
+            class="bg-white overflow-hidden shadow-soft hover:shadow-hover transition-shadow"
+          >
+            <div class="relative aspect-square">
+              <img
+                src="https://placehold.co/400x400"
+                alt="Slim Fit Jeans"
+                class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+              />
+              <div class="absolute top-2 right-2 sm:top-4 sm:right-4">
+                <button
+                  class="p-1.5 sm:p-2 bg-white/95 rounded-full shadow-subtle hover:bg-white transition-colors"
+                >
+                  <svg
+                    class="w-4 h-4 sm:w-5 sm:h-5 text-accent"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="p-2 sm:p-4">
+              <h3
+                class="font-medium text-primary text-sm sm:text-base mb-1 line-clamp-2"
+              >
+                Slim Fit Jeans
+              </h3>
+              <div class="flex items-baseline space-x-2 mb-1 sm:mb-2">
+                <span class="text-primary font-bold text-sm sm:text-base"
+                  >$69.99</span
+                >
+              </div>
+              <div class="flex items-center space-x-1 sm:space-x-2">
+                <div
+                  class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-primary"
+                ></div>
+                <span class="text-xs sm:text-sm text-accent">In Stock (8)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product Card -->
+          <div
+            class="bg-white overflow-hidden shadow-soft hover:shadow-hover transition-shadow"
+          >
+            <div class="relative aspect-square">
+              <img
+                src="https://placehold.co/400x400"
+                alt="Casual Sneakers"
+                class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+              />
+              <div class="absolute top-2 right-2 sm:top-4 sm:right-4">
+                <button
+                  class="p-1.5 sm:p-2 bg-white/95 rounded-full shadow-subtle hover:bg-white transition-colors"
+                >
+                  <svg
+                    class="w-4 h-4 sm:w-5 sm:h-5 text-accent"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="p-2 sm:p-4">
+              <h3
+                class="font-medium text-primary text-sm sm:text-base mb-1 line-clamp-2"
+              >
+                Casual Sneakers
+              </h3>
+              <div class="flex items-baseline space-x-2 mb-1 sm:mb-2">
+                <span class="text-primary font-bold text-sm sm:text-base"
+                  >$79.99</span
+                >
+                <span class="text-xs sm:text-sm text-accent line-through"
+                  >$89.99</span
+                >
+              </div>
+              <div class="flex items-center space-x-1 sm:space-x-2">
+                <div
+                  class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-primary"
+                ></div>
+                <span class="text-xs sm:text-sm text-accent">In Stock (4)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="mt-12 flex justify-center">
+          <nav class="flex items-center space-x-2">
+            <button
+              class="px-3 py-2 border border-gray-200 text-accent hover:border-primary hover:text-primary transition-colors"
+            >
+              Previous
+            </button>
+            <button class="px-3 py-2 bg-primary text-white">1</button>
+            <button
+              class="px-3 py-2 border border-gray-200 text-accent hover:border-primary hover:text-primary transition-colors"
+            >
+              2
+            </button>
+            <button
+              class="px-3 py-2 border border-gray-200 text-accent hover:border-primary hover:text-primary transition-colors"
+            >
+              3
+            </button>
+            <button
+              class="px-3 py-2 border border-gray-200 text-accent hover:border-primary hover:text-primary transition-colors"
+            >
+              Next
+            </button>
+          </nav>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-gradient">
+      <div class="w-full">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 p-8 bg-footerDark">
+          <div>
+            <h3 class="text-sm font-medium text-white mb-4">About Us</h3>
+            <p class="text-sm text-gray-400">
+              Premium quality products for the modern lifestyle.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-sm font-medium text-white mb-4">
+              Customer Service
+            </h3>
+            <ul class="space-y-2 text-sm text-gray-400">
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Contact Us</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Shipping Info</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Returns</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-sm font-medium text-white mb-4">Quick Links</h3>
+            <ul class="space-y-2 text-sm text-gray-400">
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >New Arrivals</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors"
+                  >Best Sellers</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors">Sale</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-sm font-medium text-white mb-4">Newsletter</h3>
+            <div class="flex">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                class="flex-1 px-3 py-2 bg-footerLight border border-gray-700 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-gray-600"
+              />
+              <button
+                class="bg-white text-footerDark px-4 py-2 text-sm hover:bg-gray-100 transition-colors"
+              >
+                Subscribe
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="bg-footerLight text-center text-gray-400 text-sm py-6">
+          © 2024 ShopNow. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

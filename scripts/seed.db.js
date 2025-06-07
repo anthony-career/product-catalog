@@ -22,7 +22,7 @@ const getScriptArgs = () => {
 };
 
 const validTables = {
-  products: true,
+  product: true,
   shipping: true,
 };
 function validateTable(table) {
@@ -31,14 +31,14 @@ function validateTable(table) {
 }
 
 const getTableData = (table) => {
-  const rawData = fs.readFileSync(`data/${table}.json`);
+  const rawData = fs.readFileSync(`seed/${table}.json`);
   return JSON.parse(rawData);
 };
 
 const getTableHandler = (table) => {
   const client = new PrismaClient();
   const clients = {
-    products: client.product.createMany,
+    product: client.product.createMany,
     shipping: client.product.createMany,
   };
   return clients[table];

@@ -1,0 +1,222 @@
+[
+  {
+    "name": "Premium Cotton T-Shirt",
+    "price": 29,
+    "status": "IDLE",
+    "category": "t-shirts",
+    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab",
+    "images": [
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab",
+      "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a"
+    ]
+  },
+  {
+    "name": "Classic Denim Jacket",
+    "price": 89,
+    "status": "IDLE",
+    "category": "outerwear",
+    "image": "https://images.unsplash.com/photo-1576995853123-5a10305d93c0",
+    "images": [
+      "https://images.unsplash.com/photo-1576995853123-5a10305d93c0",
+      "https://images.unsplash.com/photo-1591047139829-d91aecb6caea"
+    ]
+  },
+  {
+    "name": "Wool Beanie",
+    "price": 24,
+    "status": "IDLE",
+    "category": "hats",
+    "image": "https://images.unsplash.com/photo-1576871337622-98d48d1cf531",
+    "images": [
+      "https://images.unsplash.com/photo-1576871337622-98d48d1cf531",
+      "https://images.unsplash.com/photo-1611312449408-fcece27cdbb7"
+    ]
+  },
+  {
+    "name": "Leather Wallet",
+    "price": 49,
+    "status": "IDLE",
+    "category": "accessories",
+    "image": "https://images.unsplash.com/photo-1627123424574-724758594e93",
+    "images": [
+      "https://images.unsplash.com/photo-1627123424574-724758594e93",
+      "https://images.unsplash.com/photo-1601597111158-2fceff292cdc"
+    ]
+  },
+  {
+    "name": "Slim Fit Jeans",
+    "price": 69,
+    "status": "IDLE",
+    "category": "bottoms",
+    "image": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246",
+    "images": [
+      "https://images.unsplash.com/photo-1541099649105-f69ad21f3246",
+      "https://images.unsplash.com/photo-1473966968600-fa801b869a1a"
+    ]
+  },
+  {
+    "name": "Casual Sneakers",
+    "price": 79,
+    "status": "IDLE",
+    "category": "footwear",
+    "image": "https://images.unsplash.com/photo-1549298916-b41d501d3772",
+    "images": [
+      "https://images.unsplash.com/photo-1549298916-b41d501d3772",
+      "https://images.unsplash.com/photo-1600269452121-4f2416e55c28"
+    ]
+  },
+  {
+    "name": "Winter Parka",
+    "price": 129,
+    "status": "IDLE",
+    "category": "outerwear",
+    "image": "https://images.unsplash.com/photo-1548624313-0396c75e4b1a",
+    "images": [
+      "https://images.unsplash.com/photo-1548624313-0396c75e4b1a",
+      "https://images.unsplash.com/photo-1539533018447-63fcce2678e3"
+    ]
+  },
+  {
+    "name": "Silk Scarf",
+    "price": 39,
+    "status": "IDLE",
+    "category": "accessories",
+    "image": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990",
+    "images": [
+      "https://images.unsplash.com/photo-1618354691373-d851c5c3a990",
+      "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d"
+    ]
+  },
+  {
+    "name": "Leather Belt",
+    "price": 34,
+    "status": "IDLE",
+    "category": "accessories",
+    "image": "https://images.unsplash.com/photo-1624222247344-550fb60583f1",
+    "images": [
+      "https://images.unsplash.com/photo-1624222247344-550fb60583f1",
+      "https://images.unsplash.com/photo-1605348532760-6753d2c43329"
+    ]
+  },
+  {
+    "name": "Wool Sweater",
+    "price": 59,
+    "status": "IDLE",
+    "category": "hoodies",
+    "image": "https://images.unsplash.com/photo-1614975058789-41316d0e2cc9",
+    "images": [
+      "https://images.unsplash.com/photo-1614975058789-41316d0e2cc9",
+      "https://images.unsplash.com/photo-1638890816165-77a3e723d527"
+    ]
+  },
+  {
+    "name": "Running Shorts",
+    "price": 34,
+    "status": "IDLE",
+    "category": "bottoms",
+    "image": "https://images.unsplash.com/photo-1565084888279-aca607ecce0c",
+    "images": [
+      "https://images.unsplash.com/photo-1565084888279-aca607ecce0c",
+      "https://images.unsplash.com/photo-1591195853828-11db59a44f6b"
+    ]
+  },
+  {
+    "name": "Swim Trunks",
+    "price": 39,
+    "status": "IDLE",
+    "category": "bottoms",
+    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38",
+    "images": [
+      "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38",
+      "https://images.unsplash.com/photo-1591047139829-d91aecb6caea"
+    ]
+  },
+  {
+    "name": "Formal Dress Shirt",
+    "price": 54,
+    "status": "IDLE",
+    "category": "formal",
+    "image": "https://images.unsplash.com/photo-1598033129183-c4f50c736f10",
+    "images": [
+      "https://images.unsplash.com/photo-1598033129183-c4f50c736f10",
+      "https://images.unsplash.com/photo-1603252109303-2751441dd157"
+    ]
+  },
+  {
+    "name": "Knit Beanie",
+    "price": 19,
+    "status": "IDLE",
+    "category": "hats",
+    "image": "https://images.unsplash.com/photo-1576871337622-98d48d1cf531",
+    "images": [
+      "https://images.unsplash.com/photo-1576871337622-98d48d1cf531",
+      "https://images.unsplash.com/photo-1611312449408-fcece27cdbb7"
+    ]
+  },
+  {
+    "name": "Leather Boots",
+    "price": 99,
+    "status": "IDLE",
+    "category": "footwear",
+    "image": "https://images.unsplash.com/photo-1543163521-1bf539c55dd2",
+    "images": [
+      "https://images.unsplash.com/photo-1543163521-1bf539c55dd2",
+      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa"
+    ]
+  },
+  {
+    "name": "Summer Hat",
+    "price": 29,
+    "status": "IDLE",
+    "category": "hats",
+    "image": "https://images.unsplash.com/photo-1572307480813-ceb0e59d8325",
+    "images": [
+      "https://images.unsplash.com/photo-1572307480813-ceb0e59d8325",
+      "https://images.unsplash.com/photo-1523381210434-271e8be1f52b"
+    ]
+  },
+  {
+    "name": "Sunglasses",
+    "price": 44,
+    "status": "IDLE",
+    "category": "accessories",
+    "image": "https://images.unsplash.com/photo-1577803645773-f96470509666",
+    "images": [
+      "https://images.unsplash.com/photo-1577803645773-f96470509666",
+      "https://images.unsplash.com/photo-1511499767150-a48a237f0083"
+    ]
+  },
+  {
+    "name": "Backpack",
+    "price": 69,
+    "status": "IDLE",
+    "category": "bags",
+    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62",
+    "images": [
+      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62",
+      "https://images.unsplash.com/photo-1622560480605-d83c853bc5c3"
+    ]
+  },
+  {
+    "name": "Watch",
+    "price": 149,
+    "status": "IDLE",
+    "category": "accessories",
+    "image": "https://images.unsplash.com/photo-1524805444758-089113d48a6d",
+    "images": [
+      "https://images.unsplash.com/photo-1524805444758-089113d48a6d",
+      "https://images.unsplash.com/photo-1539874754764-5a96559165b0"
+    ]
+  },
+  {
+    "name": "Jewelry Set",
+    "price": 79,
+    "status": "IDLE",
+    "category": "accessories",
+    "image": "https://images.unsplash.com/photo-1515405295579-ba7b45403062",
+    "images": [
+      "https://images.unsplash.com/photo-1515405295579-ba7b45403062",
+      "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1"
+    ]
+  }
+]
