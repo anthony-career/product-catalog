@@ -23,26 +23,6 @@ const Header = () => {
               ShopNow
             </span>
           </a>
-          <nav className='hidden md:flex space-x-6'>
-            <a
-              href='#'
-              className='text-gray-300 hover:text-white transition-colors'
-            >
-              New Arrivals
-            </a>
-            <a
-              href='#'
-              className='text-gray-300 hover:text-white transition-colors'
-            >
-              Collections
-            </a>
-            <a
-              href='#'
-              className='text-gray-300 hover:text-white transition-colors'
-            >
-              About
-            </a>
-          </nav>
         </div>
       </div>
     </header>
