@@ -3,12 +3,13 @@ import { ProductCard } from "../../../components/design-system/ProductCard";
 import { useProductsPageState } from "../hooks/useProductsPageState";
 import { EmptyProducts } from "./EmptyProducts";
 import { ProductsError } from "./ProductsError";
+import { LoadingProducts } from "./LoadingProducts";
 
 export function ProductsGrid() {
   const { data: products, isLoading, isError } = useProductsPageState();
 
   if (isLoading) {
-    throw new Promise(() => {});
+    return <LoadingProducts />;
   }
 
   if (isError) {

@@ -22,9 +22,7 @@ export function ProductsContent() {
       </div>
 
       <div className='flex-1 overflow-y-auto min-h-0'>
-        <Suspense fallback={<LoadingProducts />}>
-          <ProductsGrid />
-        </Suspense>
+        <ProductsGrid />
       </div>
 
       <div className='mt-8 flex-none'>
