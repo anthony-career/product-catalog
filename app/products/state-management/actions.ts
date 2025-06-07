@@ -1,5 +1,4 @@
-export const SET_PAGE = "SET_PAGE";
-export const SET_LIMIT = "SET_LIMIT";
+export const SET_PAGINATION = "SET_PAGINATION";
 export const SET_DATA = "SET_DATA";
 export const SET_META = "SET_META";
 export const SET_CATEGORY = "SET_CATEGORY";

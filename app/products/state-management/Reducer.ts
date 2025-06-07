@@ -4,6 +4,7 @@ import {
   SET_DATA,
   SET_ERROR,
   SET_LOADING,
+  SET_PAGINATION,
   SET_PRICE_RANGE,
   SET_SEARCH,
   SET_SORT_CATEGORY,
@@ -26,7 +27,8 @@ export const reducer = (state: ProductsState, action: any): ProductsState => {
   if (action.type === SET_DATA) {
     return {
       ...state,
-      data: action.payload,
+      data: action.payload.data,
+      meta: action.payload.meta,
       isLoading: false,
       isError: false,
       error: null,
@@ -39,6 +41,10 @@ export const reducer = (state: ProductsState, action: any): ProductsState => {
 
   if (action.type === SET_ERROR) {
     return { ...state, isLoading: false, isError: true, error: action.payload };
+  }
+
+  if (action.type === SET_PAGINATION) {
+    return { ...state, pagination: action.payload };
   }
 
   return state;

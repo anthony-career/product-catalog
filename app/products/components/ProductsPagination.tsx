@@ -1,15 +1,36 @@
 "use client";
 
 import { useState } from "react";
+import { useProductsPageState } from "../hooks/useProductsPageState";
+import { useProductsActions } from "../hooks/useProductsActions";
 
 export function ProductsPagination() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 3; // This would come from your API/data source
+  const { meta, pagination } = useProductsPageState();
+  const { setPagination } = useProductsActions();
+  const { total, limit } = meta;
+  const totalPages = Math.ceil(total / limit);
+  const currentPage = pagination.page;
+
+  const handlePageChange = (page: number) => {
+    setPagination({ page, limit });
+  };
+
+  const handlePreviousPage = () => {
+    if (pagination.page > 1) {
+      setPagination({ page: currentPage - 1, limit });
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setPagination({ page: currentPage + 1, limit });
+    }
+  };
 
   return (
     <nav className='flex items-center space-x-2'>
       <button
-        onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+        onClick={handlePreviousPage}
         disabled={currentPage === 1}
         className='px-3 py-2 border border-gray-200 text-accent hover:border-primary hover:text-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed'
       >
@@ -19,7 +40,7 @@ export function ProductsPagination() {
       {[...Array(totalPages)].map((_, index) => (
         <button
           key={index + 1}
-          onClick={() => setCurrentPage(index + 1)}
+          onClick={() => handlePageChange(index + 1)}
           className={`px-3 py-2 ${
             currentPage === index + 1
               ? "bg-primary text-white"
@@ -31,7 +52,7 @@ export function ProductsPagination() {
       ))}
 
       <button
-        onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+        onClick={handleNextPage}
         disabled={currentPage === totalPages}
         className='px-3 py-2 border border-gray-200 text-accent hover:border-primary hover:text-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed'
       >

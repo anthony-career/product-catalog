@@ -11,6 +11,7 @@ export type ProductSortCategory =
   | "newest";
 
 export type ProductCategory =
+  | "all"
   | "t-shirts"
   | "hoodies"
   | "hats"
@@ -52,6 +53,7 @@ export const ProductSortCategoryOptions: ProductSortCategoryOption[] = [
 ];
 
 export const ProductCategoryOptions: ProductCategoryOption[] = [
+  { value: "all", label: "All" },
   { value: "t-shirts", label: "T-Shirts" },
   { value: "hoodies", label: "Hoodies" },
   { value: "hats", label: "Hats" },

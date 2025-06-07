@@ -1,17 +1,21 @@
 import { ProductsState } from "../types";
 
 export const InitialState: ProductsState = {
-  page: 1,
-  limit: 10,
+  pagination: {
+    limit: 10,
+    page: 1,
+  },
+  error: null,
+  isError: false,
   data: [],
   meta: {
     total: 0,
     page: 1,
     limit: 10,
   },
-  category: "t-shirts",
+  category: "all",
   search: "",
   sortCategory: "newest",
-  priceRange: "under-50",
+  priceRange: "all",
   isLoading: true,
 };

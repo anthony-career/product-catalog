@@ -29,14 +29,21 @@ export const ProductsProvider = ({
       priceRange: state.priceRange,
       sortCategory: state.sortCategory,
       search: state.search,
+      pagination: state.pagination,
     };
-  }, [state.category, state.priceRange, state.sortCategory, state.search]);
+  }, [
+    state.category,
+    state.pagination,
+    state.priceRange,
+    state.sortCategory,
+    state.search,
+  ]);
 
   useEffect(() => {
     dispatch({ type: SET_LOADING });
     getProducts(productsFilters)
-      .then(({ data }) => {
-        dispatch({ type: SET_DATA, payload: data });
+      .then(({ data, meta }) => {
+        dispatch({ type: SET_DATA, payload: { data, meta } });
       })
       .catch((error) => {
         dispatch({ type: SET_ERROR, payload: error });

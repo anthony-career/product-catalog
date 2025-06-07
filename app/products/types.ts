@@ -12,8 +12,10 @@ interface ProductsMeta {
 }
 
 export interface ProductsState {
-  page: number;
-  limit: number;
+  pagination: {
+    page: number;
+    limit: number;
+  };
   data: Product[];
   meta: ProductsMeta;
   category: ProductCategory;

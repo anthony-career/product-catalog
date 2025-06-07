@@ -60,7 +60,7 @@ export const createWhereExpression = (filters?: ProductFilters) => {
     }
   }
 
-  if (filters.category) {
+  if (filters.category && filters.category !== "all") {
     where.category = {
       equals: filters.category,
     };
