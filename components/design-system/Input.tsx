@@ -39,6 +39,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       disabled:bg-gray-50 
       disabled:text-gray-500 
       disabled:cursor-not-allowed
+      [appearance:textfield]
+      [&::-webkit-outer-spin-button]:appearance-none
+      [&::-webkit-inner-spin-button]:appearance-none
     `;
 
     const stateStyles = error
@@ -69,9 +72,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           )}
           <input
             ref={ref}
+            {...props}
             className={inputClasses}
             disabled={disabled}
-            {...props}
           />
           {rightIcon && (
             <div className='absolute inset-y-0 right-0 pr-3 flex items-center'>
