@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Auth Flow - ShopNow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#000000",
+              secondary: "#333333",
+              accent: "#666666",
+              light: "#F8F8F8",
+              dark: "#1A1A1A",
+              subtle: "#F0F0F0",
+              highlight: "#E5E5E5",
+              headerDark: "#1A1A1A",
+              headerDarkHover: "#2A2A2A",
+              footerDark: "#1A1A1A",
+              footerLight: "#222222",
+            },
+            boxShadow: {
+              subtle: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+              soft: "0 2px 4px 0 rgba(0, 0, 0, 0.05)",
+              hover: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .auth-container {
+        min-height: 100vh;
+        background-image: linear-gradient(120deg, #f8f8f8 0%, #f5f5f5 100%);
+      }
+      .auth-card {
+        background-color: white;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+      }
+    </style>
+  </head>
+  <body class="bg-light">
+    <div class="auth-container flex items-center justify-center p-4">
+      <div class="w-full max-w-md">
+        <div class="text-center mb-8">
+          <div class="flex items-center justify-center space-x-2 mb-4">
+            <svg
+              class="w-8 h-8 text-primary"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+              />
+            </svg>
+            <span class="text-2xl font-bold text-primary tracking-tight"
+              >ShopNow</span
+            >
+          </div>
+          <p class="text-accent mt-2">
+            Welcome back! Please sign in to your account.
+          </p>
+        </div>
+
+        <!-- Sign In Form -->
+        <div class="auth-card p-8">
+          <form class="space-y-6">
+            <div>
+              <label
+                for="email"
+                class="block text-sm font-medium text-primary uppercase tracking-wide mb-1"
+                >Email address</label
+              >
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full px-4 py-2 border border-gray-200 shadow-subtle focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                placeholder="Enter your email"
+              />
+            </div>
+
+            <div>
+              <label
+                for="password"
+                class="block text-sm font-medium text-primary uppercase tracking-wide mb-1"
+                >Password</label
+              >
+              <input
+                type="password"
+                id="password"
+                name="password"
+                required
+                class="w-full px-4 py-2 border border-gray-200 shadow-subtle focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                placeholder="Enter your password"
+              />
+            </div>
+
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <input
+                  type="checkbox"
+                  id="remember"
+                  name="remember"
+                  class="h-4 w-4 text-primary focus:ring-primary border-gray-200"
+                />
+                <label for="remember" class="ml-2 block text-sm text-accent"
+                  >Remember me</label
+                >
+              </div>
+              <a
+                href="#"
+                class="text-sm font-medium text-primary hover:text-secondary"
+                >Forgot password?</a
+              >
+            </div>
+
+            <button
+              type="submit"
+              class="w-full bg-primary text-white py-2 px-4 hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-colors shadow-soft hover:shadow-hover"
+            >
+              Sign in
+            </button>
+          </form>
+
+          <div class="mt-6">
+            <div class="relative">
+              <div class="absolute inset-0 flex items-center">
+                <div class="w-full border-t border-gray-200"></div>
+              </div>
+              <div class="relative flex justify-center text-sm">
+                <span class="px-2 bg-white text-accent">Or continue with</span>
+              </div>
+            </div>
+
+            <div class="mt-6 grid grid-cols-2 gap-3">
+              <button
+                type="button"
+                class="w-full inline-flex justify-center py-2 px-4 border border-gray-200 shadow-subtle bg-white text-sm font-medium text-accent hover:bg-subtle focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z"
+                  />
+                </svg>
+              </button>
+              <button
+                type="button"
+                class="w-full inline-flex justify-center py-2 px-4 border border-gray-200 shadow-subtle bg-white text-sm font-medium text-accent hover:bg-subtle focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <p class="mt-8 text-center text-sm text-accent">
+            Don't have an account?
+            <a href="#" class="font-medium text-primary hover:text-secondary"
+              >Sign up</a
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sign Up Screen (Hidden by default) -->
+    <div class="auth-container hidden items-center justify-center p-4">
+      <div class="w-full max-w-md">
+        <!-- Logo/Brand -->
+        <div class="text-center mb-8">
+          <div class="flex items-center justify-center space-x-2 mb-4">
+            <svg
+              class="w-8 h-8 text-primary"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+              />
+            </svg>
+            <span class="text-2xl font-bold text-primary tracking-tight"
+              >ShopNow</span
+            >
+          </div>
+          <p class="text-accent mt-2">Create your account to get started.</p>
+        </div>
+
+        <!-- Sign Up Form -->
+        <div class="auth-card p-8">
+          <form class="space-y-6">
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label
+                  for="firstName"
+                  class="block text-sm font-medium text-primary uppercase tracking-wide mb-1"
+                  >First name</label
+                >
+                <input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  required
+                  class="w-full px-4 py-2 border border-gray-200 shadow-subtle focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                  placeholder="John"
+                />
+              </div>
+              <div>
+                <label
+                  for="lastName"
+                  class="block text-sm font-medium text-primary uppercase tracking-wide mb-1"
+                  >Last name</label
+                >
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  required
+                  class="w-full px-4 py-2 border border-gray-200 shadow-subtle focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                  placeholder="Doe"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label
+                for="signup-email"
+                class="block text-sm font-medium text-primary uppercase tracking-wide mb-1"
+                >Email address</label
+              >
+              <input
+                type="email"
+                id="signup-email"
+                name="email"
+                required
+                class="w-full px-4 py-2 border border-gray-200 shadow-subtle focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                placeholder="Enter your email"
+              />
+            </div>
+
+            <div>
+              <label
+                for="signup-password"
+                class="block text-sm font-medium text-primary uppercase tracking-wide mb-1"
+                >Password</label
+              >
+              <input
+                type="password"
+                id="signup-password"
+                name="password"
+                required
+                class="w-full px-4 py-2 border border-gray-200 shadow-subtle focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                placeholder="Create a password"
+              />
+            </div>
+
+            <div>
+              <label
+                for="confirm-password"
+                class="block text-sm font-medium text-primary uppercase tracking-wide mb-1"
+                >Confirm password</label
+              >
+              <input
+                type="password"
+                id="confirm-password"
+                name="confirmPassword"
+                required
+                class="w-full px-4 py-2 border border-gray-200 shadow-subtle focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                placeholder="Confirm your password"
+              />
+            </div>
+
+            <div class="flex items-center">
+              <input
+                type="checkbox"
+                id="terms"
+                name="terms"
+                required
+                class="h-4 w-4 text-primary focus:ring-primary border-gray-200"
+              />
+              <label for="terms" class="ml-2 block text-sm text-accent">
+                I agree to the
+                <a href="#" class="text-primary hover:text-secondary"
+                  >Terms of Service</a
+                >
+                and
+                <a href="#" class="text-primary hover:text-secondary"
+                  >Privacy Policy</a
+                >
+              </label>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full bg-primary text-white py-2 px-4 hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-colors shadow-soft hover:shadow-hover"
+            >
+              Create account
+            </button>
+          </form>
+
+          <div class="mt-6">
+            <div class="relative">
+              <div class="absolute inset-0 flex items-center">
+                <div class="w-full border-t border-gray-200"></div>
+              </div>
+              <div class="relative flex justify-center text-sm">
+                <span class="px-2 bg-white text-accent">Or sign up with</span>
+              </div>
+            </div>
+
+            <div class="mt-6 grid grid-cols-2 gap-3">
+              <button
+                type="button"
+                class="w-full inline-flex justify-center py-2 px-4 border border-gray-200 shadow-subtle bg-white text-sm font-medium text-accent hover:bg-subtle focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z"
+                  />
+                </svg>
+              </button>
+              <button
+                type="button"
+                class="w-full inline-flex justify-center py-2 px-4 border border-gray-200 shadow-subtle bg-white text-sm font-medium text-accent hover:bg-subtle focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <p class="mt-8 text-center text-sm text-accent">
+            Already have an account?
+            <a href="#" class="font-medium text-primary hover:text-secondary"
+              >Sign in</a
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Simple toggle between sign in and sign up screens
+      document.querySelectorAll('a[href="#"]').forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          document.querySelectorAll(".auth-container").forEach((container) => {
+            container.classList.toggle("hidden");
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
