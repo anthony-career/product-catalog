@@ -1,7 +1,7 @@
 const fs = require("fs");
 const p = require("path");
 const { writeToFile, getFilesFromDir } = require("./utils");
-const { exec } = require("child_process");
+const { spawn } = require("child_process");
 
 const makeRootSchemaFile = async (path) => {
   const rootSchema = `
@@ -32,9 +32,9 @@ const checkFileExists = async (path) => {
 process.on("SIGINT", async () => {
   const rootSchemaDirectory = "lib/db/schemas";
   const schemaPath = `${rootSchemaDirectory}/schema.prisma`;
-  const schemaCreated = await checkFileExists(schemaPath);
+  const schemaCreated = fs.existsSync(schemaPath);
   if (schemaCreated) {
-    fs.unlinkSync(schemaPath);
+    // fs.unlinkSync(schemaPath);
   }
   process.exit(0);
 });
@@ -45,83 +45,59 @@ const runMigration = async (
   schemaPath,
   migrationName
 ) => {
-  exec(
-    `${
-      execPayload?.resetMigrations
-        ? ` ${prismaExecPath} migrate reset --schema=${schemaPath} --force &&`
-        : ""
-    } ${prismaExecPath} migrate dev --schema=${schemaPath} --name=${migrationName}`,
-    {
-      env: {
-        ...process.env,
-        PATH: process.env.PATH,
-        DATASOURCE_URL:
-          "postgresql://postgres:postgres@localhost:5432/product-catalog-db?schema=public",
-      },
-    },
-    async (err, stdout, stderr) => {
-      console.log("Generate command completed");
-      console.log("Error:", err);
-      console.log("Stdout:", stdout);
-      console.log("Stderr:", stderr);
+  const args = [
+    ...(execPayload?.resetMigrations
+      ? ["migrate", "reset", `--schema=${schemaPath}`, "--force"]
+      : []),
+    "migrate",
+    "dev",
+    `--schema=${schemaPath}`,
+    `--name=${migrationName}`,
+  ];
 
-      if (err) {
-        console.log("Generate failed  ", err);
-        fs.unlinkSync(schemaPath);
-        return;
-      }
-      if (stderr) {
-        console.log("Generate failed ::: ", stderr);
-        fs.unlinkSync(schemaPath);
-        return;
-      }
-      if (stdout) {
-        console.log("Result :::", { stdout });
-      }
-      if (!err && !stderr) {
-        console.log("Generate completed successfully");
-      }
+  const prismaProcess = spawn(prismaExecPath, args, {
+    stdio: "inherit",
+    env: {
+      ...process.env,
+      PATH: process.env.PATH,
+      DATASOURCE_URL:
+        "postgresql://postgres:postgres@localhost:5432/product-catalog-db?schema=public",
+    },
+  });
+
+  prismaProcess.on("close", (code) => {
+    if (code !== 0) {
+      console.log(`Process exited with code ${code}`);
+      fs.unlinkSync(schemaPath);
+    } else {
+      console.log("Migration completed successfully");
     }
-  );
+  });
 };
 
 const runGenerate = async (prismaExecPath, schemaPath) => {
-  const schemaFileExists = fs.existsSync(schemaPath);
-  console.log("schemaFileExists :::: ", schemaFileExists);
-  exec(
-    `${prismaExecPath} generate --schema=${schemaPath}`,
+  const prismaProcess = spawn(
+    prismaExecPath,
+    ["generate", `--schema=${schemaPath}`],
     {
+      stdio: "inherit",
       env: {
         ...process.env,
         PATH: process.env.PATH,
         DATASOURCE_URL:
           "postgresql://postgres:postgres@localhost:5432/product-catalog-db?schema=public",
       },
-    },
-    async (err, stdout, stderr) => {
-      console.log("Migration command completed");
-      console.log("Error:", err);
-      console.log("Stdout:", stdout);
-      console.log("Stderr:", stderr);
-
-      if (err) {
-        console.log("Migrate failed  ", err);
-        fs.unlinkSync(schemaPath);
-        return;
-      }
-      if (stderr) {
-        console.log("Migrate failed ::: ", stderr);
-        fs.unlinkSync(schemaPath);
-        return;
-      }
-      if (stdout) {
-        console.log("Result :::", { stdout });
-      }
-      if (!err && !stderr) {
-        console.log("Migration completed successfully");
-      }
     }
   );
+
+  prismaProcess.on("close", (code) => {
+    if (code !== 0) {
+      console.log(`Process exited with code ${code}`);
+      fs.unlinkSync(schemaPath);
+    } else {
+      console.log("Generate completed successfully");
+    }
+  });
 };
 
 const startProcess = async (execPayload) => {
@@ -130,7 +106,6 @@ const startProcess = async (execPayload) => {
   const schemaPath = `${rootSchemaDirectory}/schema.prisma`;
 
   const hasSchemaFile = await checkFileExists(schemaPath);
-  console.log("hasSchemaFile", hasSchemaFile);
   if (hasSchemaFile) {
     fs.unlinkSync(schemaPath);
   }
@@ -155,6 +130,8 @@ const startProcess = async (execPayload) => {
     rootSchema,
     ...schemaContentArr,
   ].join("\n\n");
+
+  console.log("schemaStr :::: \n\n", schemaStr);
 
   fs.writeFileSync(schemaPath, schemaStr, "utf-8");
 

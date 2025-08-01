@@ -1,0 +1,16 @@
+  enum AuthMethod {
+  GOOGLE
+  EMAIL_PASSWORD
+}
+
+
+model User { 
+  id    String @id @default(uuid())
+  email String @unique
+  authMethod AuthMethod
+  firstName String
+  lastName String
+  passwordHash String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

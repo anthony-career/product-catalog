@@ -4,7 +4,7 @@ import {
   createPaginationConfig,
   createWhereExpression,
 } from "./utils";
-import { ProductFilters } from "domain/product.model";
+import { ProductFilters } from "domain/product/model";
 
 export async function getAll(filters?: ProductFilters) {
   const where = createWhereExpression(filters);

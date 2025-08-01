@@ -1,36 +1,22 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
 import { Input } from "components/design-system/Input";
+import { useSignupForm } from "./hooks/useSignupForm";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function SignupPage() {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    terms: false,
-  });
+  const { handleOnSubmit, getFieldProps, isLoading, isSuccess } =
+    useSignupForm();
+  const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log(formData);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-  };
+  if (isSuccess) {
+    router.push("/products/all");
+  }
 
   return (
     <div className='min-h-screen bg-[#F8F8F8] flex items-center justify-center p-4'>
       <div className='w-full max-w-md'>
-        {/* Logo/Brand */}
         <div className='text-center mb-8'>
           <div className='flex items-center justify-center space-x-2 mb-4'>
             <svg
@@ -55,9 +41,8 @@ export default function SignupPage() {
           </p>
         </div>
 
-        {/* Sign Up Form */}
         <div className='bg-white p-8 shadow-[0_2px_4px_0_rgba(0,0,0,0.05)]'>
-          <form onSubmit={handleSubmit} className='space-y-6'>
+          <form onSubmit={handleOnSubmit} className='space-y-6'>
             <div className='grid grid-cols-2 gap-4'>
               <div>
                 <label
@@ -67,14 +52,9 @@ export default function SignupPage() {
                   First name
                 </label>
                 <Input
-                  type='text'
-                  id='firstName'
-                  name='firstName'
-                  value={formData.firstName}
-                  onChange={handleChange}
-                  required
-                  placeholder='John'
+                  {...getFieldProps("firstName")}
                   className='w-full'
+                  placeholder='John'
                 />
               </div>
               <div>
@@ -85,12 +65,7 @@ export default function SignupPage() {
                   Last name
                 </label>
                 <Input
-                  type='text'
-                  id='lastName'
-                  name='lastName'
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  required
+                  {...getFieldProps("lastName")}
                   placeholder='Doe'
                   className='w-full'
                 />
@@ -105,12 +80,7 @@ export default function SignupPage() {
                 Email address
               </label>
               <Input
-                type='email'
-                id='email'
-                name='email'
-                value={formData.email}
-                onChange={handleChange}
-                required
+                {...getFieldProps("email")}
                 placeholder='Enter your email'
                 className='w-full'
               />
@@ -124,12 +94,7 @@ export default function SignupPage() {
                 Password
               </label>
               <Input
-                type='password'
-                id='password'
-                name='password'
-                value={formData.password}
-                onChange={handleChange}
-                required
+                {...getFieldProps("password")}
                 placeholder='Create a password'
                 className='w-full'
               />
@@ -143,46 +108,20 @@ export default function SignupPage() {
                 Confirm password
               </label>
               <Input
-                type='password'
-                id='confirmPassword'
-                name='confirmPassword'
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                required
+                {...getFieldProps("confirmPassword")}
                 placeholder='Confirm your password'
                 className='w-full'
               />
             </div>
 
             <button
+              disabled={isLoading}
               type='submit'
               className='w-full bg-black text-white py-2 px-4 hover:bg-[#333333] focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 transition-colors shadow-[0_2px_4px_0_rgba(0,0,0,0.05)] hover:shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)]'
             >
               Create account
             </button>
           </form>
-
-          <div className='mt-6'>
-            <div className='relative'>
-              <div className='absolute inset-0 flex items-center'>
-                <div className='w-full border-t border-gray-200'></div>
-              </div>
-              <div className='relative flex justify-center text-sm'>
-                <span className='px-2 bg-white text-[#666666]'>
-                  Or sign up with
-                </span>
-              </div>
-            </div>
-
-            <button
-              type='button'
-              className='w-full mt-6 inline-flex justify-center py-2 px-4 border border-gray-200 shadow-[0_1px_2px_0_rgba(0,0,0,0.05)] bg-white text-sm font-medium text-[#666666] hover:bg-[#F0F0F0] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black'
-            >
-              <svg className='w-5 h-5' fill='currentColor' viewBox='0 0 24 24'>
-                <path d='M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z' />
-              </svg>
-            </button>
-          </div>
 
           <p className='mt-8 text-center text-sm text-[#666666]'>
             Already have an account?{" "}

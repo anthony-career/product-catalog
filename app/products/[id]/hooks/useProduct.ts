@@ -1,6 +1,6 @@
 import { Product } from "@prisma/client";
+import { getProduct } from "app/api/_services/products/getProduct";
 import { useEffect, useState } from "react";
-import { getProduct } from "server-actions/products/getProduct";
 import { isValidId } from "utils/validation";
 
 export const useProduct = ({ id }: { id: string }) => {

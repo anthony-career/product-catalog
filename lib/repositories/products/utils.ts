@@ -1,5 +1,5 @@
-import { ProductFilters, ProductSortCategory } from "domain/product.model";
 import { Prisma } from "@prisma/client";
+import { ProductFilters, ProductSortCategory } from "domain/product/model";
 
 export const checkIsValidPriceRangeIndexValue = (indexValue: string) => {
   const validStrs = ["under", "plus"];

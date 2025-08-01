@@ -1,33 +1,32 @@
 import { Typography } from "components/design-system/Typography";
+import { useRelatedProducts } from "../hooks/useRelatedProducts";
+import { ProductCard } from "components/design-system/ProductCard";
 
-export const RelatedProducts = () => {
+export const RelatedProducts = ({ id }: { id: number }) => {
+  const { relatedProducts, isLoading, error } = useRelatedProducts(id);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
-    <div className='mt-12'>
+    <div className='mt-12 flex flex-col gap-4'>
       <Typography variant='h2' color='primary' className='mb-6'>
         Related Products
       </Typography>
-      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6'>
-        <div className='bg-white overflow-hidden shadow-soft hover:shadow-hover transition-shadow'>
-          <img
-            src='https://placehold.co/400x400'
-            alt='Related Product'
-            className='w-full h-48 object-cover'
-          />
-          <div className='p-4'>
-            <Typography variant='h3' color='primary'>
-              Basic White Tee
-            </Typography>
-            <Typography variant='body1' color='primary' className='font-bold'>
-              $24.99
-            </Typography>
-            <div className='flex items-center mt-2'>
-              <div className='w-2 h-2 rounded-full bg-primary'></div>
-              <Typography variant='body2' color='accent' className='ml-2'>
-                In Stock
-              </Typography>
-            </div>
+      <div className='bg-white w-full flex gap-4 overflow-x-auto shadow-soft hover:shadow-hover transition-shadow'>
+        {relatedProducts.map((product) => (
+          <div
+            key={product.id}
+            className='shrink-0 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4'
+          >
+            <ProductCard data={product} />
           </div>
-        </div>
+        ))}
       </div>
     </div>
   );

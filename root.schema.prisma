@@ -1,0 +1,11 @@
+
+  datasource db { 
+    provider = "postgresql"
+    url = env("DATASOURCE_URL")
+    migrations = "lib/db/migrations"
+  }
+
+  generator client {
+    provider = "prisma-client-js"
+  }
+  

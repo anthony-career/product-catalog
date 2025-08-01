@@ -5,8 +5,8 @@ import { ProductsContext, ProductSelectorStatesContext } from "./context";
 import { InitialState } from "./initialState";
 import { reducer } from "./Reducer";
 import { SET_DATA, SET_LOADING, SET_ERROR } from "./actions";
-import { ProductFilters } from "domain/product.model";
-import { getProducts } from "server-actions/products/getProducts";
+import { ProductFilters } from "domain/product/model";
+import { getProducts } from "app/api/_services/products/getProducts";
 
 export const ProductsProvider = ({
   children,

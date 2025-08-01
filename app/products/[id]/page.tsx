@@ -200,7 +200,7 @@ export default function ProductPage({
           </div>
         </div>
         <ProductInformation />
-        <RelatedProducts />
+        <RelatedProducts id={Number(id)} />
       </div>
 
       <div className='fixed bottom-0 left-0 right-0 bg-footerDark border-t border-gray-800 p-4 lg:hidden z-50'>

@@ -3,6 +3,7 @@
 import { Select } from "components/ui/Select";
 import { useState, ChangeEvent } from "react";
 import { useProductsActions } from "../hooks/useProductsActions";
+import { useSelectorStates } from "../hooks/useSelectorStates";
 import {
   ProductCategory,
   ProductCategoryOptions,
@@ -10,8 +11,7 @@ import {
   ProductPriceRangeOptions,
   ProductSortCategory,
   ProductSortCategoryOptions,
-} from "domain/product.model";
-import { useSelectorStates } from "../hooks/useSelectorStates";
+} from "domain/product/model";
 
 export function ProductsFilters() {
   const { category, sortCategory, priceRange } = useSelectorStates();
